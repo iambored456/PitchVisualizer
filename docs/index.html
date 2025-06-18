@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pitch Visualizer</title>
+
+  <!-- LIBRARIES (CDN) -->
+  <script src="https://unpkg.com/tone@15.0.4/build/Tone.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pitchy@4.1.0/dist/pitchy.min.js"></script>
+  <script type="module" crossorigin src="./assets/index-Tw9l2Do8.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-mUVw1E65.css">
+</head>
+<body>
+
+  <div id="app-container">
+    <!-- LEFT PANEL: All controls will live here -->
+    <div id="left-panel">
+      <button id="startBtn" class="startBtn" aria-label="Start Pitch Detection">Start</button>
+      
+      <div id="detector" class="vague">
+        <div><span id="pitch">--</span> Hz</div>
+        <div>
+          <span id="note">--</span><span id="octave">-</span>
+        </div>
+        <canvas id="output" width="100" height="42"></canvas>
+        <div id="detune">
+          <span id="detune_amt">--</span>
+          <span id="flat">cents ♭</span>
+          <span id="sharp">cents ♯</span>
+        </div>
+      </div>
+
+      <div id="tonicBox">
+        <label for="tonicSelect">Tonic:</label>
+        <select id="tonicSelect" aria-label="Select Tonic">
+            <option value="C">C</option>
+            <option value="C♯">C♯</option>
+            <option value="D♭">D♭</option>
+            <option value="D">D</option>
+            <option value="E♭">E♭</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="F♯">F♯</option>
+            <option value="G♭">G♭</option>
+            <option value="G">G</option>
+            <option value="A♭">A♭</option>
+            <option value="A">A</option>
+            <option value="B♭">B♭</option>
+            <option value="B">B</option>
+        </select>
+        <label>
+          <input type="checkbox" id="labelToggle" />
+          degrees
+        </label>
+        <label>
+          <input type="checkbox" id="accidentalsToggle" checked />
+          Show Accidentals
+        </label>
+      </div>
+
+      <div id="droneBox">
+        <button class="droneBtn" id="droneBtn">Drone</button>
+        <div id="octaveToggles">
+          <button class="octaveBtn" data-octave="2">Oct 2</button>
+          <button class="octaveBtn active" data-octave="3">Oct 3</button>
+          <button class="octaveBtn" data-octave="4">Oct 4</button>
+        </div>
+        <div id="volumeContainer">
+          <label for="volumeSlider">Volume</label>
+          <div id="volumeSliderWrapper">
+            <input type="range" id="volumeSlider" min="-40" max="0" value="-12" step="1" />
+            <div class="volumeLabels">
+              <span>Min</span>
+              <span>Max</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: The plot and its controls will live here -->
+    <div id="right-panel">
+      <div id="yAxisControlsTop" class="yAxisControls">
+        <button id="yAxisUpperExpandBtn" aria-label="Expand Upper Y-Axis">↑</button>
+        <button id="yAxisUpperContractBtn" aria-label="Contract Upper Y-Axis">↓</button>
+      </div>
+
+      <div id="plotContainer">
+        <canvas id="plotCanvas"></canvas>
+        <canvas id="noteCanvas"></canvas>
+      </div>
+
+      <div id="yAxisControlsBottom" class="yAxisControls">
+        <button id="yAxisLowerContractBtn" aria-label="Contract Lower Y-Axis">↑</button>
+        <button id="yAxisLowerExpandBtn" aria-label="Expand Lower Y-Axis">↓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main application script -->
+</body>
+</html>
